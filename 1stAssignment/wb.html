@@ -1,0 +1,536 @@
+<head>
+
+    <title>Telemetries</title>
+
+    <link rel="stylesheet" href="main.css" type="text/css" media="screen, projection"
+</head>
+<html>
+<style>
+//body {
+  //background-image: url('sfondo.jpg');
+  //background-repeat: no-repeat;
+  //background-attachment: fixed;
+  //background-size: cover;
+  //background-opacity: 0.5;
+//}
+</style>
+
+<html>
+<head>
+
+    <body>
+
+        <h1>First device's last telemetry</h1>
+
+        <button onclick="LastTel1()">Start</button>
+
+
+        <h1></h1>
+
+
+    <table id="myTable"> // creation of the first table
+    <tr> // the first row is compsed by the following attributes
+
+    <th>Temperature</th>
+    <th>Humidity</th>
+    <th>Wind Direction</th>
+    <th>Wind Intensity</th>
+    <th>Rain Height</th>
+    <th>Timestamp</th>
+
+    </tr>
+    <tr>  //here I initialize an empty row that I will edit every time the telemetries update
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    </table>
+
+    <h1>Second device's last telemetry</h1>   //I do the sam thing for the second device
+
+    <button onclick="LastTel2()">Start</button>
+
+    <h1></h1>
+
+
+    <table id="myTable2">
+    <tr>
+
+    <th>Temperature</th>
+    <th>Humidity</th>
+    <th>Wind Direction</th>
+    <th>Wind Intensity</th>
+    <th>Rain Height</th>
+    <th>Timestamp</th>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </table>
+
+
+
+</body>
+
+    <script type="text/javascript">
+        function LastTel1() {
+            // X-Authorization token
+            var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg0NzIzOTc5LCJleHAiOjE1ODY1MjM5Nzl9.RGdpnnHvFyr7vttzfhuWmX3j3eMC5kXESCkH_DYYLj43tCjAU_taju-zuIwrk7M8dtkCVtzyFY3q5b03tvgiFA";
+            var entityId = "0e42bd20-6c5b-11ea-8e0a-7d0ef2a682d3"; //this is the device token taken from thingsboard
+            var webSocket = new WebSocket("wss://demo.thingsboard.io/api/ws/plugins/telemetry?token=" + token);
+
+            if (entityId === "YOUR_DEVICE_ID") { //check if the device token is correct
+                alert("Invalid device id!");
+                webSocket.close();
+            }
+
+            if (token === "YOUR_JWT_TOKEN") { //check if the X-Authorization token is correct
+                alert("Invalid JWT token!");
+                webSocket.close();
+            }
+
+            webSocket.onopen = function () {
+                var object = {
+                    tsSubCmds: [
+                        {
+                            entityType: "DEVICE",
+                            entityId: entityId,
+                            scope: "LATEST_TELEMETRY",
+                            cmdId: 10
+                        }
+                    ],
+                    historyCmds: [],
+                    attrSubCmds: []
+                };
+                var data = JSON.stringify(object);
+                webSocket.send(data);
+
+            };
+
+            webSocket.onmessage = function (event) { //in this function I store the parsed data in msg
+                var received_msg = event.data;
+                var msg=JSON.parse(event.data);
+                var tempo= msg.data.temperature[0][0];
+                var data = new Date(tempo);
+
+                var table = document.getElementById("myTable");
+
+                table.rows[1].cells[0].innerHTML = msg.data.temperature[0][1];  //in this way I add in each cell of the row sensor's data
+                table.rows[1].cells[1].innerHTML = msg.data.humidity[0][1];
+                table.rows[1].cells[2].innerHTML = msg.data.windDirection[0][1];
+                table.rows[1].cells[3].innerHTML = msg.data.windIntensity[0][1];
+                table.rows[1].cells[4].innerHTML = msg.data.rainHeight[0][1];
+                table.rows[1].cells[5].innerHTML = data;
+
+            };
+
+            webSocket.onclose = function (event) {
+                alert("Connection is closed!");
+            };
+
+
+        }
+
+        function LastTel2() {
+            var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg0NzIzOTc5LCJleHAiOjE1ODY1MjM5Nzl9.RGdpnnHvFyr7vttzfhuWmX3j3eMC5kXESCkH_DYYLj43tCjAU_taju-zuIwrk7M8dtkCVtzyFY3q5b03tvgiFA";
+            var entityId = "68462540-6c5c-11ea-ad02-b3576b7d39f1";
+            var webSocket = new WebSocket("wss://demo.thingsboard.io/api/ws/plugins/telemetry?token=" + token);
+
+            if (entityId === "YOUR_DEVICE_ID") {
+                alert("Invalid device id!");
+                webSocket.close();
+            }
+
+            if (token === "YOUR_JWT_TOKEN") {
+                alert("Invalid JWT token!");
+                webSocket.close();
+            }
+
+            webSocket.onopen = function () {
+                var object = {
+                    tsSubCmds: [
+                        {
+                            entityType: "DEVICE",
+                            entityId: entityId,
+
+                            startTs: 1584728700000,
+                            scope: "LATEST_TELEMETRY",
+                            cmdId: 10
+                        }
+                    ],
+                    historyCmds: [],
+                    attrSubCmds: []
+                };
+                var data = JSON.stringify(object);
+                webSocket.send(data);
+
+            };
+
+            webSocket.onmessage = function (event) {
+                var received_msg = event.data;
+                var msg=JSON.parse(event.data);
+                var tempo= msg.data.temperature[0][0];
+                var data = new Date(tempo);
+
+                var table = document.getElementById("myTable2");
+
+                table.rows[1].cells[0].innerHTML = msg.data.temperature[0][1];
+                table.rows[1].cells[1].innerHTML = msg.data.humidity[0][1];
+                table.rows[1].cells[2].innerHTML = msg.data.windDirection[0][1];
+                table.rows[1].cells[3].innerHTML = msg.data.windIntensity[0][1];
+                table.rows[1].cells[4].innerHTML = msg.data.rainHeight[0][1];
+                table.rows[1].cells[5].innerHTML = data;
+
+            };
+
+            webSocket.onclose = function (event) {
+                alert("Connection is closed!");
+            };
+
+
+        }
+    </script>
+
+</head>
+
+</html>
+
+<!-- Simple pop-up dialog box containing a form -->
+<dialog id="sensDialog">
+  <form method="dialog">
+    <p><label>Sensor:
+      <select>
+        <option></option> //here there are the possible choices
+        <option>Temperature</option>
+        <option>Humidity</option>
+        <option>Wind Direction</option>
+        <option>Wind Intensity</option>
+        <option>Rain Height</option>
+
+
+      </select>
+
+    <menu>
+      <button value="cancel">Cancel</button>
+      <button id="confirmBtn" value="default">Confirm</button>
+    </menu>
+  </form>
+</dialog>
+
+<menu>
+  <button id="updateDetails">History</button>
+</menu>
+
+
+<output aria-live="polite"></output>
+
+
+<body>
+
+<h1>First device's 1 hour history</h1>
+
+    <table id="myTable3">
+<tr>
+
+  <th></th>
+  <th></th>
+
+</tr>
+</table>
+
+<h1>Second device's 1 hour history</h1>
+
+<table id="myTable4">
+<tr>
+
+<th></th>
+<th></th>
+
+</tr>
+</table>
+<br>
+
+</body>
+<script>
+    var data = new Date().getTime();
+    var end = data; //saves the current time
+
+    var start = end-3600000; // 1 hour before the current time
+    var xhttp = new XMLHttpRequest();
+    var xhttp2 = new XMLHttpRequest();
+    //To show the historical telemetries of both devices we need to make two Get calls.
+    xhttp.open('GET', 'http://demo.thingsboard.io/api/plugins/telemetry/DEVICE/0e42bd20-6c5b-11ea-8e0a-7d0ef2a682d3/values/timeseries?keys=temperature,humidity,windDirection,windIntensity,rainHeight&startTs='+start+'&endTs='+ end +'&limit=100&agg=AVG');
+    xhttp.setRequestHeader('Content-Type', 'application/json');
+    xhttp.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg0NzIzOTc5LCJleHAiOjE1ODY1MjM5Nzl9.RGdpnnHvFyr7vttzfhuWmX3j3eMC5kXESCkH_DYYLj43tCjAU_taju-zuIwrk7M8dtkCVtzyFY3q5b03tvgiFA');
+    xhttp2.open('GET', 'http://demo.thingsboard.io/api/plugins/telemetry/DEVICE/68462540-6c5c-11ea-ad02-b3576b7d39f1/values/timeseries?keys=temperature,humidity,windDirection,windIntensity,rainHeight&startTs='+start+'&endTs='+ end +'&limit=100&agg=AVG');
+    xhttp2.setRequestHeader('Content-Type', 'application/json');
+    xhttp2.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg0NzIzOTc5LCJleHAiOjE1ODY1MjM5Nzl9.RGdpnnHvFyr7vttzfhuWmX3j3eMC5kXESCkH_DYYLj43tCjAU_taju-zuIwrk7M8dtkCVtzyFY3q5b03tvgiFA');
+    xhttp.send();
+    xhttp2.send();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+
+        var response = JSON.parse(this.responseText);  //data now is parsed in a new variable called response
+        var temp = response.temperature;
+        text="";
+        var hum = response.humidity;
+        var winDir = response.windDirection;
+        var winInt = response.windIntensity;
+        var rain = response.rainHeight;
+
+        var updateButton = document.getElementById('updateDetails');
+        var favDialog = document.getElementById('sensDialog');
+        var outputBox = document.querySelector('output');
+        var selectEl = document.querySelector('select');
+        var confirmBtn = document.getElementById('confirmBtn');
+
+        // "Update details" button opens the <dialog> modally
+        updateButton.addEventListener('click', function onOpen() {
+
+          if (typeof favDialog.showModal === "function") {
+            favDialog.showModal();
+          } else {
+            alert("The <dialog> API is not supported by this browser");
+          }
+        });
+        // "Sensor" input sets the value of the submit button
+        selectEl.addEventListener('change', function onSelect(e) {
+          confirmBtn.value = selectEl.value;
+        });
+        // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
+        favDialog.addEventListener('close', function onClose() {
+
+          var table = document.getElementById("myTable3");
+          var lunghezza=temp.length;
+
+          var rowCount = myTable3.rows.length;
+          while(--rowCount)
+          {
+              myTable3.deleteRow(rowCount);
+          }
+
+          if (favDialog.returnValue == "Temperature")  //check if it is selected
+          {
+              for (i=0; i<lunghezza; i++)  //for loop to add in each row data sensor
+              {
+                var tempo= temp[i].ts;
+                var data = new Date(tempo);
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                table.rows[0].cells[0].innerHTML = "Temperature";
+                table.rows[0].cells[1].innerHTML = "Timestamp";
+                cell1.innerHTML = temp[i].value;
+                cell2.innerHTML = data;
+            }
+          }
+          else if (favDialog.returnValue == "Humidity") //check if it is selected
+          {
+              for (i=0; i<lunghezza; i++)
+              {
+                var tempo= temp[i].ts;
+                var data = new Date(tempo);
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                table.rows[0].cells[0].innerHTML = "Humidity";
+                table.rows[0].cells[1].innerHTML = "Timestamp";
+                cell1.innerHTML = hum[i].value;
+                cell2.innerHTML = data;
+            }
+          }
+          else if (favDialog.returnValue == "Wind Direction") //check if it is selected
+          {
+              for (i=0; i<lunghezza; i++)
+              {
+                var tempo= temp[i].ts;
+                var data = new Date(tempo);
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                table.rows[0].cells[0].innerHTML = "Wind Direction";
+                table.rows[0].cells[1].innerHTML = "Timestamp";
+                cell1.innerHTML = winDir[i].value;
+                cell2.innerHTML = data;
+            }
+          }
+          else if (favDialog.returnValue == "Wind Intensity") //check if it is selected
+          {
+              for (i=0; i<lunghezza; i++)
+              {
+                var tempo= temp[i].ts;
+                var data = new Date(tempo);
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                table.rows[0].cells[0].innerHTML = "Wind Intensity";
+                table.rows[0].cells[1].innerHTML = "Timestamp";
+                cell1.innerHTML = winInt[i].value;
+                cell2.innerHTML = data;
+            }
+          }
+          else if (favDialog.returnValue == "Rain Height") //check if it is selected
+          {
+              for (i=0; i<lunghezza; i++)
+              {
+                var tempo= temp[i].ts;
+                var data = new Date(tempo);
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                table.rows[0].cells[0].innerHTML = "Rain Height";
+                table.rows[0].cells[1].innerHTML = "Timestamp";
+                cell1.innerHTML = rain[i].value;
+                cell2.innerHTML = data;
+            }
+          }
+
+
+
+        });
+
+        }
+
+
+    };
+
+    xhttp2.onreadystatechange = function() { //the same thing for the second device
+    if (this.readyState == 4 && this.status == 200) {
+
+        var response = JSON.parse(this.responseText);
+        var temp = response.temperature;
+        text="";
+        var hum = response.humidity;
+        var winDir = response.windDirection;
+        var winInt = response.windIntensity;
+        var rain = response.rainHeight;
+
+        var updateButton = document.getElementById('updateDetails');
+        var favDialog = document.getElementById('sensDialog');
+        var outputBox = document.querySelector('output');
+        var selectEl = document.querySelector('select');
+        var confirmBtn = document.getElementById('confirmBtn');
+
+        // "Update details" button opens the <dialog> modally
+        updateButton.addEventListener('click', function onOpen() {
+          if (typeof favDialog.showModal === "function") {
+            favDialog.showModal();
+          } else {
+            alert("The <dialog> API is not supported by this browser");
+          }
+        });
+        // "Favorite animal" input sets the value of the submit button
+        selectEl.addEventListener('change', function onSelect(e) {
+          confirmBtn.value = selectEl.value;
+        });
+        // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
+        favDialog.addEventListener('close', function onClose() {
+
+          var table = document.getElementById("myTable4");
+          var lunghezza=temp.length;
+
+          var rowCount = myTable4.rows.length;
+          while(--rowCount)
+          {
+              myTable4.deleteRow(rowCount);
+          }
+
+          if (favDialog.returnValue == "Temperature")
+          {
+              for (i=0; i<lunghezza; i++)
+              {
+                var tempo= temp[i].ts;
+                var data = new Date(tempo);
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                table.rows[0].cells[0].innerHTML = "Temperature";
+                table.rows[0].cells[1].innerHTML = "Timestamp";
+                cell1.innerHTML = temp[i].value;
+                cell2.innerHTML = data;
+                //outputBox.value = temp[i].value +  " button clicked - " + (new Date()).toString();
+            }
+          }
+          else if (favDialog.returnValue == "Humidity")
+          {
+              for (i=0; i<lunghezza; i++)
+              {
+                var tempo= temp[i].ts;
+                var data = new Date(tempo);
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                table.rows[0].cells[0].innerHTML = "Humidity";
+                table.rows[0].cells[1].innerHTML = "Timestamp";
+                cell1.innerHTML = hum[i].value;
+                cell2.innerHTML = data;
+            }
+          }
+          else if (favDialog.returnValue == "Wind Direction")
+          {
+              for (i=0; i<lunghezza; i++)
+              {
+                var tempo= temp[i].ts;
+                var data = new Date(tempo);
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                table.rows[0].cells[0].innerHTML = "Wind Direction";
+                table.rows[0].cells[1].innerHTML = "Timestamp";
+                cell1.innerHTML = winDir[i].value;
+                cell2.innerHTML = data;
+            }
+          }
+          else if (favDialog.returnValue == "Wind Intensity")
+          {
+              for (i=0; i<lunghezza; i++)
+              {
+                var tempo= temp[i].ts;
+                var data = new Date(tempo);
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                table.rows[0].cells[0].innerHTML = "Wind Intensity";
+                table.rows[0].cells[1].innerHTML = "Timestamp";
+                cell1.innerHTML = winInt[i].value;
+                cell2.innerHTML = data;
+            }
+          }
+          else if (favDialog.returnValue == "Rain Height")
+          {
+              for (i=0; i<lunghezza; i++)
+              {
+                var tempo= temp[i].ts;
+                var data = new Date(tempo);
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                table.rows[0].cells[0].innerHTML = "Rain Height";
+                table.rows[0].cells[1].innerHTML = "Timestamp";
+                cell1.innerHTML = rain[i].value;
+                cell2.innerHTML = data;
+            }
+          }
+
+
+
+        });
+
+        }
+
+
+    };
+
+
+</script>
