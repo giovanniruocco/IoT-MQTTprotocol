@@ -1,3 +1,3 @@
-Youtube video: https://www.youtube.com/watch?v=R84hGK6YjEw
+Youtube video: https://www.youtube.com/watch?v=jNs3YUnpr0w
 
-Linkedin post: https://www.linkedin.com/pulse/cloud-based-iot-system-collects-information-from-set-virtual-ruocco/
+Linkedin post: https://www.linkedin.com/pulse/publish-virtual-telemetries-from-riot-os-thingsboard-iot-ruocco
