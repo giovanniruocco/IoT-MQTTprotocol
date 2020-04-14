@@ -20,6 +20,8 @@
 
     <body>
 
+    <font size="8">1st Assignment:</font>
+
         <h1>First device's last telemetry</h1>
 
         <button onclick="LastTel1()">Start</button>
@@ -85,7 +87,7 @@
     <script type="text/javascript">
         function LastTel1() {
             // X-Authorization token
-            var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg0NzIzOTc5LCJleHAiOjE1ODY1MjM5Nzl9.RGdpnnHvFyr7vttzfhuWmX3j3eMC5kXESCkH_DYYLj43tCjAU_taju-zuIwrk7M8dtkCVtzyFY3q5b03tvgiFA";
+            var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg2NTMwMzc4LCJleHAiOjE1ODgzMzAzNzh9.PnR-EVU6Y3nnfG2QZIxtXK8SJXMNrP5AWGU2k3tfLcEx58WniGr7wOwZPHvq6vtaoRjqc-cMY3IagvWhhcUcQw";
             var entityId = "0e42bd20-6c5b-11ea-8e0a-7d0ef2a682d3"; //this is the device token taken from thingsboard
             var webSocket = new WebSocket("wss://demo.thingsboard.io/api/ws/plugins/telemetry?token=" + token);
 
@@ -142,7 +144,7 @@
         }
 
         function LastTel2() {
-            var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg0NzIzOTc5LCJleHAiOjE1ODY1MjM5Nzl9.RGdpnnHvFyr7vttzfhuWmX3j3eMC5kXESCkH_DYYLj43tCjAU_taju-zuIwrk7M8dtkCVtzyFY3q5b03tvgiFA";
+            var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg2NTMwMzc4LCJleHAiOjE1ODgzMzAzNzh9.PnR-EVU6Y3nnfG2QZIxtXK8SJXMNrP5AWGU2k3tfLcEx58WniGr7wOwZPHvq6vtaoRjqc-cMY3IagvWhhcUcQw";
             var entityId = "68462540-6c5c-11ea-ad02-b3576b7d39f1";
             var webSocket = new WebSocket("wss://demo.thingsboard.io/api/ws/plugins/telemetry?token=" + token);
 
@@ -271,10 +273,10 @@
     //To show the historical telemetries of both devices we need to make two Get calls.
     xhttp.open('GET', 'http://demo.thingsboard.io/api/plugins/telemetry/DEVICE/0e42bd20-6c5b-11ea-8e0a-7d0ef2a682d3/values/timeseries?keys=temperature,humidity,windDirection,windIntensity,rainHeight&startTs='+start+'&endTs='+ end +'&limit=100&agg=AVG');
     xhttp.setRequestHeader('Content-Type', 'application/json');
-    xhttp.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg0NzIzOTc5LCJleHAiOjE1ODY1MjM5Nzl9.RGdpnnHvFyr7vttzfhuWmX3j3eMC5kXESCkH_DYYLj43tCjAU_taju-zuIwrk7M8dtkCVtzyFY3q5b03tvgiFA');
+    xhttp.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg2NTMwMzc4LCJleHAiOjE1ODgzMzAzNzh9.PnR-EVU6Y3nnfG2QZIxtXK8SJXMNrP5AWGU2k3tfLcEx58WniGr7wOwZPHvq6vtaoRjqc-cMY3IagvWhhcUcQw');
     xhttp2.open('GET', 'http://demo.thingsboard.io/api/plugins/telemetry/DEVICE/68462540-6c5c-11ea-ad02-b3576b7d39f1/values/timeseries?keys=temperature,humidity,windDirection,windIntensity,rainHeight&startTs='+start+'&endTs='+ end +'&limit=100&agg=AVG');
     xhttp2.setRequestHeader('Content-Type', 'application/json');
-    xhttp2.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg0NzIzOTc5LCJleHAiOjE1ODY1MjM5Nzl9.RGdpnnHvFyr7vttzfhuWmX3j3eMC5kXESCkH_DYYLj43tCjAU_taju-zuIwrk7M8dtkCVtzyFY3q5b03tvgiFA');
+    xhttp2.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg2NTMwMzc4LCJleHAiOjE1ODgzMzAzNzh9.PnR-EVU6Y3nnfG2QZIxtXK8SJXMNrP5AWGU2k3tfLcEx58WniGr7wOwZPHvq6vtaoRjqc-cMY3IagvWhhcUcQw');
     xhttp.send();
     xhttp2.send();
     xhttp.onreadystatechange = function() {
@@ -535,6 +537,9 @@
 
 </script>
 
+    <h1>----------------------------------------------------------------------</h1>
+    <font size="8">2nd Assignment:</font>
+
 <h1>First RIOT device's 1 hour history</h1>
 
 <button onclick="WebSocketAPI_RIOT()">Update</button>
@@ -591,7 +596,7 @@
 			xhttp.open('GET', 'http://demo.thingsboard.io/api/plugins/telemetry/DEVICE/f5f31d30-70df-11ea-8e0a-7d0ef2a682d3/values/timeseries?keys=temperature,humidity,windDirection,windIntensity,rainHeight,ID&startTs='+start+'&endTs='+ end +'&limit=100&agg=AVG');
 			xhttp.setRequestHeader('Content-Type', 'application/json');
             // X-Authorization token
-            xhttp.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg0NzIzOTc5LCJleHAiOjE1ODY1MjM5Nzl9.RGdpnnHvFyr7vttzfhuWmX3j3eMC5kXESCkH_DYYLj43tCjAU_taju-zuIwrk7M8dtkCVtzyFY3q5b03tvgiFA');
+            xhttp.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIxYjEzMTcyMC02YTA4LTExZWEtYWQwMi1iMzU3NmI3ZDM5ZjEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMWFmNzlmZTAtNmEwOC0xMWVhLWFkMDItYjM1NzZiN2QzOWYxIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg2NTMwMzc4LCJleHAiOjE1ODgzMzAzNzh9.PnR-EVU6Y3nnfG2QZIxtXK8SJXMNrP5AWGU2k3tfLcEx58WniGr7wOwZPHvq6vtaoRjqc-cMY3IagvWhhcUcQw');
 			xhttp.send();
 			xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
@@ -664,9 +669,396 @@
   };
     }
     </script>
+    <h1>----------------------------------------------------------------------</h1>
+    <font size="8">3rd Assignment:</font>
+
+    <h1>First LORAWAN device's 1 hour history</h1>
+
+    <button onclick="WebSocketAPI_LORA1_1()">Update</button>
+
+    <h1></h1>
 
 
-<body>
+    <table id="myTable7">
+    <tr>
+    <th>Device</th>
+    <th>Temperature</th>
+    <th>Humidity</th>
+    <th>Wind Direction</th>
+    <th>Wind Intensity</th>
+    <th>Rain Height</th>
+    <th>Timestamp</th>
+
+
+    </tr>
+    </table>
+
+
+    <h1>Second LORAWAN device's 1 hour history</h1>
+
+    <button onclick="WebSocketAPI_LORA1_2()">Update</button>
+
+    <h1></h1>
+
+
+    <table id="myTable8">
+    <tr>
+    <th>Device</th>
+    <th>Temperature</th>
+    <th>Humidity</th>
+    <th>Wind Direction</th>
+    <th>Wind Intensity</th>
+    <th>Rain Height</th>
+    <th>Timestamp</th>
+
+
+    </tr>
+    </table>
+
+
+    <br>
+
+    <h1>First Real LORAWAN device's 1 hour history</h1>
+
+    <button onclick="WebSocketAPI_LORA2_1()">Update</button>
+
+    <h1></h1>
+
+
+    <table id="myTable9">
+    <tr>
+    <th>Device</th>
+    <th>Temperature</th>
+    <th>Humidity</th>
+    <th>Timestamp</th>
+
+
+    </tr>
+    </table>
+
+    <br>
+    <h1>Second Real LORAWAN device's 1 hour history</h1>
+
+    <button onclick="WebSocketAPI_LORA2_2()">Update</button>
+
+    <h1></h1>
+
+
+    <table id="myTable10">
+    <tr>
+    <th>Device</th>
+    <th>Temperature</th>
+    <th>Humidity</th>
+    <th>Timestamp</th>
+
+
+    </tr>
+    </table>
+
+
+        <script type="text/javascript">
+            var conteggio = 0;
+            function WebSocketAPI_LORA1_1() {
+
+                var data = new Date().getTime();
+                var end = data; //saves the current time
+
+                var start = end-3600000; // 1 hour before the current time
+                var xhttp = new XMLHttpRequest();
+    			xhttp.open('GET', 'http://cloud.thingsboard.io/api/plugins/telemetry/DEVICE/6d116c9a-78df-11ea-adde-138aaf34a429/values/timeseries?keys=temperature,humidity,windDirection,windIntensity,rainHeight,device&startTs='+start+'&endTs='+ end +'&limit=100&agg=AVG');
+    			xhttp.setRequestHeader('Content-Type', 'application/json');
+                // X-Authorization token
+                xhttp.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiI2ZTJhYjZhMC03OGRkLTExZWEtYjk5ZS1hMzNkMGM2ZDU1MTEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiNmUwYjZlZDAtNzhkZC0xMWVhLWI5OWUtYTMzZDBjNmQ1NTExIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6ImNsb3VkLnRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg2MjcyNDI5LCJleHAiOjE1ODgwNzI0Mjl9.EUHa5ZdLkWANXFShSJhrmmdhywotlPriHIXfcsNjC3STTGAm1BzD0PC7NHQOylnjjsh4d2leBVuct2nW3LThTg');
+    			xhttp.send();
+    			xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+
+    				var response = JSON.parse(this.responseText); //data now is parsed in a new variable called response
+                    var temp = response.temperature;
+                    text="";
+                    var hum = response.humidity;
+                    var winDir = response.windDirection;
+                    var winInt = response.windIntensity;
+                    var rain = response.rainHeight;
+                    var dev = response.device;
+
+                    }
+
+                    var i;
+                    var table1 = document.getElementById("myTable7"); //two table in order to show the two devices
+
+                    var lunghezza=temp.length;
+
+                    var rowCount = myTable7.rows.length; //to reset the table everytime I update
+                    while(--rowCount)
+                    {
+                        myTable7.deleteRow(rowCount);
+                    }
+
+
+
+
+                    for (i=0; i<lunghezza; i++)
+                    {
+
+
+                            var tempo= temp[i].ts;
+                            var data = new Date(tempo);
+
+
+
+
+                            var row = table1.insertRow();
+
+                          var cell0 = row.insertCell(0); //population of the table
+                          var cell1 = row.insertCell(1);
+                          var cell2 = row.insertCell(2);
+                          var cell3 = row.insertCell(3);
+                          var cell4 = row.insertCell(4);
+                          var cell5 = row.insertCell(5);
+                          var cell6 = row.insertCell(6);
+
+                          cell0.innerHTML = dev[i].value;
+                          cell1.innerHTML = temp[i].value + " °C";
+                          cell2.innerHTML = hum[i].value + "%";
+                          cell3.innerHTML = winDir[i].value + " degrees";
+                          cell4.innerHTML = winInt[i].value + " m/s";
+                          cell5.innerHTML = rain[i].value + " mm/h";
+                          cell6.innerHTML = data;
+
+
+
+
+
+                  }
+
+      };
+        }
+
+        function WebSocketAPI_LORA1_2() {
+
+            var data = new Date().getTime();
+            var end = data; //saves the current time
+
+            var start = end-3600000; // 1 hour before the current time
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('GET', 'http://cloud.thingsboard.io/api/plugins/telemetry/DEVICE/aeab1e80-79ab-11ea-adde-138aaf34a429/values/timeseries?keys=temperature,humidity,windDirection,windIntensity,rainHeight,device&startTs='+start+'&endTs='+ end +'&limit=100&agg=AVG');
+            xhttp.setRequestHeader('Content-Type', 'application/json');
+            // X-Authorization token
+            xhttp.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiI2ZTJhYjZhMC03OGRkLTExZWEtYjk5ZS1hMzNkMGM2ZDU1MTEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiNmUwYjZlZDAtNzhkZC0xMWVhLWI5OWUtYTMzZDBjNmQ1NTExIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6ImNsb3VkLnRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg2MjcyNDI5LCJleHAiOjE1ODgwNzI0Mjl9.EUHa5ZdLkWANXFShSJhrmmdhywotlPriHIXfcsNjC3STTGAm1BzD0PC7NHQOylnjjsh4d2leBVuct2nW3LThTg');
+            xhttp.send();
+            xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                var response = JSON.parse(this.responseText); //data now is parsed in a new variable called response
+                var temp = response.temperature;
+                text="";
+                var hum = response.humidity;
+                var winDir = response.windDirection;
+                var winInt = response.windIntensity;
+                var rain = response.rainHeight;
+                var dev = response.device;
+
+                }
+
+                var i;
+                var table1 = document.getElementById("myTable8"); //two table in order to show the two devices
+
+                var lunghezza=temp.length;
+
+                var rowCount = myTable8.rows.length; //to reset the table everytime I update
+                while(--rowCount)
+                {
+                    myTable8.deleteRow(rowCount);
+                }
+
+
+
+                for (i=0; i<lunghezza; i++)
+                {
+
+
+                        var tempo= temp[i].ts;
+                        var data = new Date(tempo);
+
+
+
+
+                        var row = table1.insertRow();
+
+                      var cell0 = row.insertCell(0); //population of the table
+                      var cell1 = row.insertCell(1);
+                      var cell2 = row.insertCell(2);
+                      var cell3 = row.insertCell(3);
+                      var cell4 = row.insertCell(4);
+                      var cell5 = row.insertCell(5);
+                      var cell6 = row.insertCell(6);
+
+                      cell0.innerHTML = dev[i].value;
+                      cell1.innerHTML = temp[i].value + " °C";
+                      cell2.innerHTML = hum[i].value + "%";
+                      cell3.innerHTML = winDir[i].value + " degrees";
+                      cell4.innerHTML = winInt[i].value + " m/s";
+                      cell5.innerHTML = rain[i].value + " mm/h";
+                      cell6.innerHTML = data;
+
+
+
+
+
+              }
+
+  };
+    }
+
+
+
+
+
+
+
+
+        function WebSocketAPI_LORA2_1() {
+
+            var data = new Date().getTime();
+            var end = data; //saves the current time
+
+            var start = end-3600000; // 1 hour before the current time
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('GET', 'http://cloud.thingsboard.io/api/plugins/telemetry/DEVICE/1146b1e0-78de-11ea-adde-138aaf34a429/values/timeseries?keys=temperature,humidity,device&startTs='+start+'&endTs='+ end +'&limit=100&agg=AVG');
+            xhttp.setRequestHeader('Content-Type', 'application/json');
+            // X-Authorization token
+            xhttp.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiI2ZTJhYjZhMC03OGRkLTExZWEtYjk5ZS1hMzNkMGM2ZDU1MTEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiNmUwYjZlZDAtNzhkZC0xMWVhLWI5OWUtYTMzZDBjNmQ1NTExIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6ImNsb3VkLnRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg2MjcyNDI5LCJleHAiOjE1ODgwNzI0Mjl9.EUHa5ZdLkWANXFShSJhrmmdhywotlPriHIXfcsNjC3STTGAm1BzD0PC7NHQOylnjjsh4d2leBVuct2nW3LThTg');
+            xhttp.send();
+            xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                var response = JSON.parse(this.responseText); //data now is parsed in a new variable called response
+                var temp = response.temperature;
+                text="";
+                var hum = response.humidity;
+                var dev = response.device;
+
+                }
+
+                var i;
+                var table = document.getElementById("myTable9");
+                var lunghezza=temp.length;
+
+                var rowCount = myTable9.rows.length;
+                while(--rowCount)
+                {
+                    myTable9.deleteRow(rowCount);
+                }
+
+
+
+                for (i=0; i<lunghezza; i++)
+                {
+
+
+                        var tempo= temp[i].ts;
+                        var data = new Date(tempo);
+
+
+
+
+                        var row = table.insertRow();
+
+                      var cell0 = row.insertCell(0); //population of the table
+                      var cell1 = row.insertCell(1);
+                      var cell2 = row.insertCell(2);
+                      var cell3 = row.insertCell(3);
+
+                      cell0.innerHTML = dev[i].value;
+                      cell1.innerHTML = temp[i].value + " °C";
+                      cell2.innerHTML = hum[i].value + "%";
+                      cell3.innerHTML = data;
+
+
+
+
+
+              }
+
+  };
+    }
+
+    function WebSocketAPI_LORA2_2() {
+
+        var data = new Date().getTime();
+        var end = data; //saves the current time
+
+        var start = end-3600000; // 1 hour before the current time
+        var xhttp = new XMLHttpRequest();
+        xhttp.open('GET', 'http://cloud.thingsboard.io/api/plugins/telemetry/DEVICE/468a78fe-79ab-11ea-adde-138aaf34a429/values/timeseries?keys=temperature,humidity,device&startTs='+start+'&endTs='+ end +'&limit=100&agg=AVG');
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        // X-Authorization token
+        xhttp.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW92YW5uaS5ydW9jY283OTdAZ21haWwuY29tIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiI2ZTJhYjZhMC03OGRkLTExZWEtYjk5ZS1hMzNkMGM2ZDU1MTEiLCJmaXJzdE5hbWUiOiJHaW92YW5uaSIsImxhc3ROYW1lIjoiUnVvY2NvIiwiZW5hYmxlZCI6dHJ1ZSwicHJpdmFjeVBvbGljeUFjY2VwdGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiNmUwYjZlZDAtNzhkZC0xMWVhLWI5OWUtYTMzZDBjNmQ1NTExIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6ImNsb3VkLnRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNTg2MjcyNDI5LCJleHAiOjE1ODgwNzI0Mjl9.EUHa5ZdLkWANXFShSJhrmmdhywotlPriHIXfcsNjC3STTGAm1BzD0PC7NHQOylnjjsh4d2leBVuct2nW3LThTg');
+        xhttp.send();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            var response = JSON.parse(this.responseText); //data now is parsed in a new variable called response
+            var temp = response.temperature;
+            text="";
+            var hum = response.humidity;
+            var dev = response.device;
+
+            }
+
+            var i;
+            var table = document.getElementById("myTable10");
+            var lunghezza=temp.length;
+
+            var rowCount = myTable10.rows.length;
+            while(--rowCount)
+            {
+                myTable10.deleteRow(rowCount);
+            }
+
+
+
+            for (i=0; i<lunghezza; i++)
+            {
+
+
+                    var tempo= temp[i].ts;
+                    var data = new Date(tempo);
+
+
+
+
+                    var row = table.insertRow();
+
+                  var cell0 = row.insertCell(0); //population of the table
+                  var cell1 = row.insertCell(1);
+                  var cell2 = row.insertCell(2);
+                  var cell3 = row.insertCell(3);
+
+                  cell0.innerHTML = dev[i].value;
+                  cell1.innerHTML = temp[i].value + " °C";
+                  cell2.innerHTML = hum[i].value + "%";
+                  cell3.innerHTML = data;
+
+
+
+
+
+          }
+
+};
+}
+
+
+
+
+
+        </script>
+
+
+    <body>
+
 
 
 
