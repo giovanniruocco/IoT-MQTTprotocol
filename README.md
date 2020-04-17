@@ -3,6 +3,7 @@
 Videos available on: https://www.youtube.com/channel/UCYqfsypgUyIXnKJCOo0tnqA/videos
 
 Linkedin posts available on: https://www.linkedin.com/in/giovanniruocco07/
+
 1st Assignment post: https://www.linkedin.com/pulse/cloud-based-iot-system-collects-information-from-set-virtual-ruocco/
 2nd Assignment post: https://www.linkedin.com/pulse/publish-virtual-telemetries-from-riot-os-thingsboard-iot-ruocco/
 3rd Assignment post: https://www.linkedin.com/pulse/publish-virtual-real-world-telemetries-from-riot-os-via-ruocco/
