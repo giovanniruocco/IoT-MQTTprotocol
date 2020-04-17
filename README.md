@@ -1,4 +1,4 @@
-### IoT 2020 course - Sapienza - MsC Engineering in Computer Science
+### IoT 2020 course - Sapienza - MSc Engineering in Computer Science
 
 Videos available on: https://www.youtube.com/channel/UCYqfsypgUyIXnKJCOo0tnqA/videos
 
