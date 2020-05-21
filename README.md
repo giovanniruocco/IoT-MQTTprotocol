@@ -63,9 +63,22 @@ Repository structure:
 |       |      └── lorawan.elf
 
 
+
+4ST ASSIGNMENT
+
+├── Activity_Recognition                       
+│   │   
+│   ├── Cloud          #Cloud development html page
+|   |       ├── wb.html
+|   |       └── main.css
+|   ├── Edge           #Edge development html page
+|   |       ├── index.html
+|   |       └── main.css
+
+
 WEB PAGE
 
-├── WebPage                         #Web Page that contains tables for each assignment          
+├── WebPage                         #Web Page that contains tables for the first 3 assignment          
 │   │   
 │   ├── main.css          
 |   └── wb.html           
