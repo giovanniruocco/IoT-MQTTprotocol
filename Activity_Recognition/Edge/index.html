@@ -45,7 +45,6 @@
   <script type="application/javascript">
     function getIP(json) {
       myip = json.ip;
-      //document.getElementById("ip").innerHTML = "Your IP: " + myip;
     }
     </script>
   
@@ -64,24 +63,24 @@
     var c=[];
     let status = document.getElementById('status');
     
-    //document.getElementById('status').innerHTML = array[9];
+
     
     if ( 'Accelerometer' in window ) {
       var sensor = new Accelerometer({frequency: 1});
      
       sensor.addEventListener('reading', () => {
       cont++;
-      document.getElementById('status').innerHTML = "Measurement number: " + (cont+1);
+      document.getElementById('status').innerHTML = "Measurement number: " + (cont+1); //At which measurement I am
       arrayx[cont] = sensor.x;
       arrayy[cont] = sensor.y;
       arrayz[cont] = sensor.z;
       if (cont !=0)
       {
-        a[cont-1] = arrayx[cont] - arrayx[cont-1];
+        a[cont-1] = arrayx[cont] - arrayx[cont-1];   //Difference between a value and the previous one.
         b[cont-1] = arrayy[cont] - arrayy[cont-1];
         c[cont-1] = arrayz[cont] - arrayz[cont-1];
         
-        document.getElementById('statusx').innerHTML = "Movement x-axis: " + a[cont-1].toFixed(10);
+        document.getElementById('statusx').innerHTML = "Movement x-axis: " + a[cont-1].toFixed(10); //To find the momevement on each axis
         document.getElementById('statusy').innerHTML = "Movement y-axis: " + b[cont-1].toFixed(10);
         document.getElementById('statusz').innerHTML = "Movement z-axis: " + c[cont-1].toFixed(10);
 
@@ -96,15 +95,15 @@
             sommy += Math.abs(b[j+ (tempo*(num-1))]);
             sommz += Math.abs(c[j+ (tempo*(num-1))]);
           }
-          var SMA = Math.abs(sommx/tempo) + Math.abs(sommy/tempo) + Math.abs(sommz/tempo);
+          var Average = Math.abs(sommx/tempo) + Math.abs(sommy/tempo) + Math.abs(sommz/tempo);
           var trsh = 1;
-          document.getElementById('mediax').innerHTML = "Average of x-axis movement: " + (sommx/tempo);
+          document.getElementById('mediax').innerHTML = "Average of x-axis movement: " + (sommx/tempo); // To find the average on each axis
           document.getElementById('mediay').innerHTML = "Average of y-axis movement: " + (sommy/tempo);
           document.getElementById('mediaz').innerHTML = "Average of z-axis movement: " + (sommz/tempo);
-          document.getElementById('media').innerHTML = "Total Average from the last " + tempo + " measurements: " + SMA;
+          document.getElementById('media').innerHTML = "Total Average from the last " + tempo + " measurements: " + Average;
 
 
-          if (SMA > trsh)
+          if (Average > trsh)
             document.getElementById('movement').innerHTML = "I'm moving";
           
           else
@@ -121,7 +120,7 @@
         xhttp3.setRequestHeader('Content-Type', 'application/json');
         xhttp3.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW9ubmkwNzk3QGdtYWlsLmNvbSIsInNjb3BlcyI6WyJURU5BTlRfQURNSU4iXSwidXNlcklkIjoiOTI0ZTI4MDAtOTViYi0xMWVhLWEwZDktYWI2MzcyNTBlNWU5IiwiZmlyc3ROYW1lIjoiR2lvdmFubmkiLCJsYXN0TmFtZSI6IlJ1b2NjbyIsImVuYWJsZWQiOnRydWUsInByaXZhY3lQb2xpY3lBY2NlcHRlZCI6dHJ1ZSwiaXNQdWJsaWMiOmZhbHNlLCJ0ZW5hbnRJZCI6IjkyM2IzYzQwLTk1YmItMTFlYS1hMGQ5LWFiNjM3MjUwZTVlOSIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAiLCJpc3MiOiJjbG91ZC50aGluZ3Nib2FyZC5pbyIsImlhdCI6MTU4OTUzNDgxMCwiZXhwIjoxNTkxMzM0ODEwfQ.USf-oCOOCtIzfKYz6zLAOS3gJ_ot0CiHPg5i3P2LsOmoY4D_SycRer2rzriBZcpP-_JgScQZZvvWNjzdCC0plg');
         
-        xhttp3.send('{"axis":' + sensor.x.toFixed(10) +  ', "movement":' + Math.abs(a[cont-1].toFixed(10)) + ', "ip":' + myip + "}");
+        xhttp3.send('{"axis":' + sensor.x.toFixed(10) +  ', "movement":' + Math.abs(a[cont-1].toFixed(10)) + "}");
 
         var xhttp3 = new XMLHttpRequest();
         xhttp3.open('POST', 'https://cloud.thingsboard.io/api/plugins/telemetry/DEVICE/33865190-968c-11ea-a0d9-ab637250e5e9/timeseries/SERVER_SCOPE');
