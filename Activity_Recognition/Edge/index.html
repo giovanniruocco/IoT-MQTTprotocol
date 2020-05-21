@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Accelerometer Sensor</title>  
+  <h1>Accelerometer Sensor </h1>
+  <button onclick="sensori()">Start</button>
+  <br/>
+  <link rel="stylesheet" href="main.css" type="text/css" media="screen, projection"
+  
+  
+  <h1></h1>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Ruocco Giovanni">
+  <meta charset="UTF-8">
+</head>
+<table id="myTable"><!--  creation of the first table -->
+  <tr> <!--  the first row is compsed by the following attributes-->
+
+  <th>X</th>
+  <th>Y</th>
+  <th>Z</th>
+  </tr>
+
+  <tr>  <!-- here I initialize an empty row that I will edit every time the telemetries update-->
+    <td>NO DATA</td>
+    <td>NO DATA</td>
+    <td>NO DATA</td>
+
+</tr>
+
+<body>
+  <br>
+  
+  <div id="status">Click start and take a look to your sensors</div>
+  <div id="statusx">Movement x-axis: </div>
+  <div id="statusy">Movement y-axis: </div>
+  <div id="statusz">Movement z-axis: </div>
+  <br>
+  <div id="mediax">Waiting for average of x-axis movement... </div>
+  <div id="mediay">Waiting for average of y-axis movement...</div>
+  <div id="mediaz">Waiting for average of z-axis movement....</div>
+  <div id="media">Total Average: </div>
+  <div id="movement">Waiting for measurements... </div>
+  
+  <script type="application/javascript">
+    function getIP(json) {
+      myip = json.ip;
+      //document.getElementById("ip").innerHTML = "Your IP: " + myip;
+    }
+    </script>
+  
+    <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+  
+
+  <script>
+    
+    function sensori() {
+    var cont=-1;
+    var arrayx = [];
+    var arrayy = [];
+    var arrayz = [];
+    var a=[];
+    var b=[];
+    var c=[];
+    let status = document.getElementById('status');
+    
+    //document.getElementById('status').innerHTML = array[9];
+    
+    if ( 'Accelerometer' in window ) {
+      var sensor = new Accelerometer({frequency: 1});
+     
+      sensor.addEventListener('reading', () => {
+      cont++;
+      document.getElementById('status').innerHTML = "Measurement number: " + (cont+1);
+      arrayx[cont] = sensor.x;
+      arrayy[cont] = sensor.y;
+      arrayz[cont] = sensor.z;
+      if (cont !=0)
+      {
+        a[cont-1] = arrayx[cont] - arrayx[cont-1];
+        b[cont-1] = arrayy[cont] - arrayy[cont-1];
+        c[cont-1] = arrayz[cont] - arrayz[cont-1];
+        
+        document.getElementById('statusx').innerHTML = "Movement x-axis: " + a[cont-1].toFixed(10);
+        document.getElementById('statusy').innerHTML = "Movement y-axis: " + b[cont-1].toFixed(10);
+        document.getElementById('statusz').innerHTML = "Movement z-axis: " + c[cont-1].toFixed(10);
+
+        var num=0;
+        var tempo = 10;
+        if (cont % tempo == 0)
+        {
+          num = (cont/tempo);
+          for (var j=0,sommx=0,sommy=0,sommz=0; j<tempo; j++)
+          {
+            sommx += Math.abs(a[j+ (tempo*(num-1))]);
+            sommy += Math.abs(b[j+ (tempo*(num-1))]);
+            sommz += Math.abs(c[j+ (tempo*(num-1))]);
+          }
+          var SMA = Math.abs(sommx/tempo) + Math.abs(sommy/tempo) + Math.abs(sommz/tempo);
+          var trsh = 1;
+          document.getElementById('mediax').innerHTML = "Average of x-axis movement: " + (sommx/tempo);
+          document.getElementById('mediay').innerHTML = "Average of y-axis movement: " + (sommy/tempo);
+          document.getElementById('mediaz').innerHTML = "Average of z-axis movement: " + (sommz/tempo);
+          document.getElementById('media').innerHTML = "Total Average from the last " + tempo + " measurements: " + SMA;
+
+
+          if (SMA > trsh)
+            document.getElementById('movement').innerHTML = "I'm moving";
+          
+          else
+            document.getElementById('movement').innerHTML = "I'm still";
+          
+        }
+        var table = document.getElementById("myTable");
+        table.rows[1].cells[0].innerHTML = sensor.x.toFixed(10);  //in this way I add in each cell of the row sensor's data
+        table.rows[1].cells[1].innerHTML = sensor.y.toFixed(10);
+        table.rows[1].cells[2].innerHTML = sensor.z.toFixed(10);
+        
+        var xhttp3 = new XMLHttpRequest();
+        xhttp3.open('POST', 'https://cloud.thingsboard.io/api/plugins/telemetry/DEVICE/2c79d070-968c-11ea-a0d9-ab637250e5e9/timeseries/SERVER_SCOPE');
+        xhttp3.setRequestHeader('Content-Type', 'application/json');
+        xhttp3.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW9ubmkwNzk3QGdtYWlsLmNvbSIsInNjb3BlcyI6WyJURU5BTlRfQURNSU4iXSwidXNlcklkIjoiOTI0ZTI4MDAtOTViYi0xMWVhLWEwZDktYWI2MzcyNTBlNWU5IiwiZmlyc3ROYW1lIjoiR2lvdmFubmkiLCJsYXN0TmFtZSI6IlJ1b2NjbyIsImVuYWJsZWQiOnRydWUsInByaXZhY3lQb2xpY3lBY2NlcHRlZCI6dHJ1ZSwiaXNQdWJsaWMiOmZhbHNlLCJ0ZW5hbnRJZCI6IjkyM2IzYzQwLTk1YmItMTFlYS1hMGQ5LWFiNjM3MjUwZTVlOSIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAiLCJpc3MiOiJjbG91ZC50aGluZ3Nib2FyZC5pbyIsImlhdCI6MTU4OTUzNDgxMCwiZXhwIjoxNTkxMzM0ODEwfQ.USf-oCOOCtIzfKYz6zLAOS3gJ_ot0CiHPg5i3P2LsOmoY4D_SycRer2rzriBZcpP-_JgScQZZvvWNjzdCC0plg');
+        
+        xhttp3.send('{"axis":' + sensor.x.toFixed(10) +  ', "movement":' + Math.abs(a[cont-1].toFixed(10)) + ', "ip":' + myip + "}");
+
+        var xhttp3 = new XMLHttpRequest();
+        xhttp3.open('POST', 'https://cloud.thingsboard.io/api/plugins/telemetry/DEVICE/33865190-968c-11ea-a0d9-ab637250e5e9/timeseries/SERVER_SCOPE');
+        xhttp3.setRequestHeader('Content-Type', 'application/json');
+        xhttp3.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW9ubmkwNzk3QGdtYWlsLmNvbSIsInNjb3BlcyI6WyJURU5BTlRfQURNSU4iXSwidXNlcklkIjoiOTI0ZTI4MDAtOTViYi0xMWVhLWEwZDktYWI2MzcyNTBlNWU5IiwiZmlyc3ROYW1lIjoiR2lvdmFubmkiLCJsYXN0TmFtZSI6IlJ1b2NjbyIsImVuYWJsZWQiOnRydWUsInByaXZhY3lQb2xpY3lBY2NlcHRlZCI6dHJ1ZSwiaXNQdWJsaWMiOmZhbHNlLCJ0ZW5hbnRJZCI6IjkyM2IzYzQwLTk1YmItMTFlYS1hMGQ5LWFiNjM3MjUwZTVlOSIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAiLCJpc3MiOiJjbG91ZC50aGluZ3Nib2FyZC5pbyIsImlhdCI6MTU4OTUzNDgxMCwiZXhwIjoxNTkxMzM0ODEwfQ.USf-oCOOCtIzfKYz6zLAOS3gJ_ot0CiHPg5i3P2LsOmoY4D_SycRer2rzriBZcpP-_JgScQZZvvWNjzdCC0plg');
+        
+        xhttp3.send('{"axis":' + sensor.y.toFixed(10) +  ', "movement":' + Math.abs(b[cont-1].toFixed(10)) +  "}");
+
+        var xhttp3 = new XMLHttpRequest();
+        xhttp3.open('POST', 'https://cloud.thingsboard.io/api/plugins/telemetry/DEVICE/3b7bac10-968c-11ea-a0d9-ab637250e5e9/timeseries/SERVER_SCOPE');
+        xhttp3.setRequestHeader('Content-Type', 'application/json');
+        xhttp3.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW9ubmkwNzk3QGdtYWlsLmNvbSIsInNjb3BlcyI6WyJURU5BTlRfQURNSU4iXSwidXNlcklkIjoiOTI0ZTI4MDAtOTViYi0xMWVhLWEwZDktYWI2MzcyNTBlNWU5IiwiZmlyc3ROYW1lIjoiR2lvdmFubmkiLCJsYXN0TmFtZSI6IlJ1b2NjbyIsImVuYWJsZWQiOnRydWUsInByaXZhY3lQb2xpY3lBY2NlcHRlZCI6dHJ1ZSwiaXNQdWJsaWMiOmZhbHNlLCJ0ZW5hbnRJZCI6IjkyM2IzYzQwLTk1YmItMTFlYS1hMGQ5LWFiNjM3MjUwZTVlOSIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAiLCJpc3MiOiJjbG91ZC50aGluZ3Nib2FyZC5pbyIsImlhdCI6MTU4OTUzNDgxMCwiZXhwIjoxNTkxMzM0ODEwfQ.USf-oCOOCtIzfKYz6zLAOS3gJ_ot0CiHPg5i3P2LsOmoY4D_SycRer2rzriBZcpP-_JgScQZZvvWNjzdCC0plg');
+        
+        xhttp3.send('{"axis":' + sensor.z.toFixed(10) +  ', "movement":' + Math.abs(c[cont-1].toFixed(10)) +  "}");
+        //document.getElementById('status').innerHTML = array[1];
+      
+      
+      
+      }
+
+      
+      
+      });
+
+      sensor.start();
+    }
+    else status.innerHTML = 'Accelerometer not supported';
+    }
+  </script>
+
+</body>
+</html>
