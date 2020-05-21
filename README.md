@@ -4,21 +4,22 @@ Linkedin posts available on: https://www.linkedin.com/in/giovanniruocco07/
 
 Videos available on: https://www.youtube.com/channel/UCYqfsypgUyIXnKJCOo0tnqA/videos
 
+
 1st Assignment post: https://www.linkedin.com/pulse/cloud-based-iot-system-collects-information-from-set-virtual-ruocco/
 
-1st Assignment video: https://www.youtube.com/watch?v=R84hGK6YjEw
+
 
 2nd Assignment post: https://www.linkedin.com/pulse/publish-virtual-telemetries-from-riot-os-thingsboard-iot-ruocco/
 
-2nd Assignment video: https://www.youtube.com/watch?v=jNs3YUnpr0w
+
 
 3rd Assignment post: https://www.linkedin.com/pulse/publish-virtual-real-world-telemetries-from-riot-os-via-ruocco/
 
-3rd Assignment video: https://www.youtube.com/watch?v=Rnz6ZLdbJtc
+
 
 4th Assignment post: https://www.linkedin.com/pulse/crowd-sensing-html5-application-giovanni-ruocco/
 
-4th Assignment video:https://www.youtube.com/watch?v=cFge1k0WB74
+
 
 
 Repository structure:
@@ -30,9 +31,6 @@ Repository structure:
 │   ├── algthingsboard1.py           #Random values sent to thingsboard(1st device)
 |   └── algthingsboard1.py           #Random values sent to thingsboard(2nd device)
 
-1st Assignment post: https://www.linkedin.com/pulse/cloud-based-iot-system-collects-information-from-set-virtual-ruocco/
-
-1st Assignment video: https://www.youtube.com/watch?v=R84hGK6YjEw
 
 
 
@@ -52,10 +50,6 @@ Repository structure:
 |       └── 2ndStation              #Random values sent via mosquitto_bridge(2nd device)
 |       |      ├── Makefile
 |       |      └── main.c
-
-2nd Assignment post: https://www.linkedin.com/pulse/publish-virtual-telemetries-from-riot-os-thingsboard-iot-ruocco/
-
-2nd Assignment video: https://www.youtube.com/watch?v=jNs3YUnpr0w
 
 
 
@@ -81,9 +75,6 @@ Repository structure:
 |       |      ├── main.c
 |       |      └── lorawan.elf
 
-3rd Assignment post: https://www.linkedin.com/pulse/publish-virtual-real-world-telemetries-from-riot-os-via-ruocco/
-
-3rd Assignment video: https://www.youtube.com/watch?v=Rnz6ZLdbJtc
 
 
 
@@ -99,9 +90,6 @@ Repository structure:
 |   |       ├── index.html
 |   |       └── main.css
 
-4th Assignment post: https://www.linkedin.com/pulse/crowd-sensing-html5-application-giovanni-ruocco/
-
-4th Assignment video:https://www.youtube.com/watch?v=cFge1k0WB74
 
 
 
